@@ -91,7 +91,7 @@ namespace SnakesAndLadders
             _board.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
             Table.Children.Add(_board);
 
-            NewGame();
+            //NewGame();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -161,7 +161,7 @@ namespace SnakesAndLadders
                 StartComputerTurn();
         }
 
-        private void ChooseTokens()
+        private void ChooseTokens1()
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -244,6 +244,90 @@ namespace SnakesAndLadders
                 Table.Children.Add(_playerToken.Img);
                 Table.Children.Add(_computerToken.Img);
             }));
+        }
+        private void ChooseTokens()
+        {
+            //Dispatcher.BeginInvoke(new Action(() =>
+            //{
+                int playerTokenColor = 0;
+                int computerTokenColor = 0;
+
+                // call dialog to choose player's token
+                ChooseToken dlg = new ChooseToken();
+                dlg.Owner = this;
+                bool? result = dlg.ShowDialog();
+                if (result == true) // if player chose a color
+                    playerTokenColor = dlg.ChosenToken;
+                else // if player closed the dialog without choosing
+                    playerTokenColor = _random.Next(1, 5);
+
+                // choose random computer token
+                computerTokenColor = _random.Next(1, 4);
+                if (computerTokenColor == playerTokenColor)
+                    computerTokenColor++;
+                _tokensChosen = true;
+
+                // set top row colors
+                switch (computerTokenColor)
+                {
+                    case 1:
+                        MeText.Foreground = Brushes.Green;
+                        string filename = "pack://application:,,,/images/greenToken.png";
+                        MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        break;
+                    case 2:
+                        MeText.Foreground = Brushes.Blue;
+                        filename = "pack://application:,,,/images/blueToken.png";
+                        MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        break;
+                    case 3:
+                        MeText.Foreground = Brushes.Purple;
+                        filename = "pack://application:,,,/images/purpleToken.png";
+                        MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        break;
+                    case 4:
+                        MeText.Foreground = Brushes.Gray;
+                        filename = "pack://application:,,,/images/grayToken.png";
+                        MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        break;
+                }
+
+                // set top row colors
+                switch (playerTokenColor)
+                {
+                    case 1:
+                        YouText.Foreground = Brushes.Green;
+                        string filename = "pack://application:,,,/images/greenToken.png";
+                        YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        break;
+                    case 2:
+                        YouText.Foreground = Brushes.Blue;
+                        filename = "pack://application:,,,/images/blueToken.png";
+                        YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        break;
+                    case 3:
+                        YouText.Foreground = Brushes.Purple;
+                        filename = "pack://application:,,,/images/purpleToken.png";
+                        YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        break;
+                    case 4:
+                        YouText.Foreground = Brushes.Gray;
+                        filename = "pack://application:,,,/images/grayToken.png";
+                        YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                        break;
+                }
+
+                Table.Children.Add(_playerToken.Img);
+                Table.Children.Add(_computerToken.Img);
+            //}));
         }
 
         private void Table_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -457,6 +541,11 @@ namespace SnakesAndLadders
         {
             Instructions.Text = text;
             SpeakText(text);
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            NewGame();
         }
 
         private void SpeakText(string text)

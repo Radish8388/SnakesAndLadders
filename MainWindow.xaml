@@ -8,7 +8,8 @@
         Title="Snakes and Ladders"
         Height="816" Width="733.6"
         Loaded="Window_Loaded"
-        SizeChanged="Window_SizeChanged">
+        SizeChanged="Window_SizeChanged"
+        ContentRendered="Window_ContentRendered">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
