@@ -1,0 +1,40 @@
+﻿<Window x:Class="SnakesAndLadders.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SnakesAndLadders"
+        mc:Ignorable="d"
+        Title="Snakes and Ladders"
+        Height="816" Width="733.6"
+        Loaded="Window_Loaded"
+        SizeChanged="Window_SizeChanged">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock x:Name="MeText" Text="Me: " FontSize="18" Margin="0,0,0,0" Foreground="Blue"/>
+            <Image x:Name="MeToken" Source="/images/blueToken.png" Stretch="UniformToFill"/>
+            <TextBlock x:Name="YouText" Text="You: " FontSize="18" Margin="40,0,0,0" Foreground="Red"/>
+            <Image x:Name="YouToken" Source="/images/redToken.png" Stretch="UniformToFill"/>
+            <Button Content="New Game" FontSize="12" Width="80" Margin="40,0,40,0" Click="NewGameButton_Click"/>
+            <Button x:Name="DiceButton" Click="Dice_Click">
+                <Image Source="/images/dice.png"/>
+            </Button>
+            <Button x:Name="SoundButton" BorderThickness="0" Background="White" Click="SoundButton_Click" Margin="40,0,0,0">
+                <Image x:Name="SoundImage" Source="/images/soundOn.png" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+        </StackPanel>
+        <TextBlock x:Name="Instructions"
+                   Text="Instructions will appear here."
+                   Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="16"/>
+        <Canvas x:Name="Table" Grid.Row="2" SizeChanged="Table_SizeChanged"/>
+    </Grid>
+</Window>

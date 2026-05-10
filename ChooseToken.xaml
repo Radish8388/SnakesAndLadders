@@ -1,0 +1,28 @@
+﻿<Window x:Class="SnakesAndLadders.ChooseToken"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SnakesAndLadders"
+        mc:Ignorable="d"
+        Title="Choose:"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Height="100" Width="250">
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Background="White" Click="GreenButton_Click">
+                <Image Source="/images/greenToken.png" Width="50" Height="50"/>
+            </Button>
+            <Button Background="White" Click="BlueButton_Click">
+                <Image Source="/images/blueToken.png" Width="50" Height="50"/>
+            </Button>
+            <Button Background="White" Click="PurpleButton_Click">
+                <Image Source="/images/purpleToken.png" Width="50" Height="50"/>
+            </Button>
+            <Button Background="White" Click="GrayButton_Click">
+                <Image Source="/images/grayToken.png" Width="50" Height="50"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
