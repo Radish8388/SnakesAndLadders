@@ -1,6 +1,6 @@
 [Setup]
 AppName=Snakes And Ladders
-AppVersion=1.0.1
+AppVersion=1.0.2
 DefaultDirName={autopf}\Radish\SnakesAndLadders
 DefaultGroupName=Radish
 SetupIconFile=images\snake.ico

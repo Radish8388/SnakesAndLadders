@@ -7,23 +7,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>images\snake.ico</ApplicationIcon>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Company>Radish</Company>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="images\blueToken.png" />
-    <None Remove="images\blueToken2.png" />
+    <None Remove="images\blueToken3.png" />
     <None Remove="images\board.png" />
     <None Remove="images\dice.png" />
-    <None Remove="images\grayToken.png" />
-    <None Remove="images\grayToken2.png" />
-    <None Remove="images\greenToken.png" />
-    <None Remove="images\greenToken2.png" />
-    <None Remove="images\purpleToken.png" />
-    <None Remove="images\purpleToken2.png" />
-    <None Remove="images\redToken.png" />
-    <None Remove="images\redToken2.png" />
+    <None Remove="images\grayToken3.png" />
+    <None Remove="images\greenToken3.png" />
+    <None Remove="images\purpleToken3.png" />
+    <None Remove="images\redToken3.png" />
     <None Remove="images\soundOff.png" />
     <None Remove="images\soundOn.png" />
     <None Remove="sounds\applause.wav" />
@@ -40,10 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="images\blueToken.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\blueToken2.png">
+    <Resource Include="images\blueToken3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\board.png">
@@ -52,28 +44,16 @@
     <Resource Include="images\dice.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\grayToken.png">
+    <Resource Include="images\grayToken3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\grayToken2.png">
+    <Resource Include="images\greenToken3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\greenToken.png">
+    <Resource Include="images\purpleToken3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="images\greenToken2.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\purpleToken.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\purpleToken2.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\redToken.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="images\redToken2.png">
+    <Resource Include="images\redToken3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\soundOff.png">
@@ -88,6 +68,51 @@
     <Resource Include="sounds\gameover.wav">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="images\blueToken.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\blueToken2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\grayToken.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\grayToken2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\greenToken.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\greenToken2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\purpleToken.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\purpleToken2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\redToken.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="images\redToken2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

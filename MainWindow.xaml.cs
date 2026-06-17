@@ -73,6 +73,15 @@ namespace SnakesAndLadders
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // load the properties from disk
+            Properties.Settings.Default.Reload();
+            bool soundOn = Properties.Settings.Default.SoundOn;
+            if (soundOn == false) SoundButton_Click(this, new RoutedEventArgs());
+            this.Left = Properties.Settings.Default.WindowLeft;
+            this.Top = Properties.Settings.Default.WindowTop;
+            this.Width = Properties.Settings.Default.WindowWidth;
+            this.Height = Properties.Settings.Default.WindowHeight;
+
             double screenWidth = SystemParameters.WorkArea.Width;
             double screenHeight = SystemParameters.WorkArea.Height;
 
@@ -191,25 +200,25 @@ namespace SnakesAndLadders
                 {
                     case 1:
                         MeText.Foreground = Brushes.Green;
-                        string filename = "pack://application:,,,/images/greenToken2.png";
+                        string filename = "pack://application:,,,/images/greenToken3.png";
                         MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 2:
                         MeText.Foreground = Brushes.Blue;
-                        filename = "pack://application:,,,/images/blueToken2.png";
+                        filename = "pack://application:,,,/images/blueToken3.png";
                         MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 3:
                         MeText.Foreground = Brushes.Purple;
-                        filename = "pack://application:,,,/images/purpleToken2.png";
+                        filename = "pack://application:,,,/images/purpleToken3.png";
                         MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 4:
                         MeText.Foreground = Brushes.Gray;
-                        filename = "pack://application:,,,/images/grayToken2.png";
+                        filename = "pack://application:,,,/images/grayToken3.png";
                         MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
@@ -220,25 +229,25 @@ namespace SnakesAndLadders
                 {
                     case 1:
                         YouText.Foreground = Brushes.Green;
-                        string filename = "pack://application:,,,/images/greenToken2.png";
+                        string filename = "pack://application:,,,/images/greenToken3.png";
                         YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 2:
                         YouText.Foreground = Brushes.Blue;
-                        filename = "pack://application:,,,/images/blueToken2.png";
+                        filename = "pack://application:,,,/images/blueToken3.png";
                         YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 3:
                         YouText.Foreground = Brushes.Purple;
-                        filename = "pack://application:,,,/images/purpleToken2.png";
+                        filename = "pack://application:,,,/images/purpleToken3.png";
                         YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 4:
                         YouText.Foreground = Brushes.Gray;
-                        filename = "pack://application:,,,/images/grayToken2.png";
+                        filename = "pack://application:,,,/images/grayToken3.png";
                         YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
@@ -488,6 +497,16 @@ namespace SnakesAndLadders
                 SoundImage.Source = new BitmapImage(new Uri("/images/soundOff.png", UriKind.Relative));
                 synth.SpeakAsyncCancelAll();
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default.WindowLeft = this.Left;
+            Properties.Settings.Default.WindowTop = this.Top;
+            Properties.Settings.Default.WindowWidth = this.Width;
+            Properties.Settings.Default.WindowHeight = this.Height;
+            Properties.Settings.Default.SoundOn = _isSoundOn;
+            Properties.Settings.Default.Save();
         }
 
         private void AnnounceWinner()

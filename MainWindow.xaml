@@ -9,7 +9,8 @@
         Height="816" Width="733.6"
         Loaded="Window_Loaded"
         SizeChanged="Window_SizeChanged"
-        ContentRendered="Window_ContentRendered">
+        ContentRendered="Window_ContentRendered"
+        Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -19,9 +20,9 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock x:Name="MeText" Text="Me: " FontSize="18" Margin="0,0,0,0" Foreground="Blue"/>
-            <Image x:Name="MeToken" Source="/images/blueToken2.png" Stretch="UniformToFill"/>
+            <Image x:Name="MeToken" Source="/images/blueToken3.png" Stretch="UniformToFill"/>
             <TextBlock x:Name="YouText" Text="You: " FontSize="18" Margin="40,0,0,0" Foreground="Red"/>
-            <Image x:Name="YouToken" Source="/images/redToken2.png" Stretch="UniformToFill"/>
+            <Image x:Name="YouToken" Source="/images/redToken3.png" Stretch="UniformToFill"/>
             <Button Content="New Game" FontSize="12" Width="80" Margin="40,0,40,0" Click="NewGameButton_Click"/>
             <Button x:Name="DiceButton" Click="Dice_Click">
                 <Image Source="/images/dice.png"/>
