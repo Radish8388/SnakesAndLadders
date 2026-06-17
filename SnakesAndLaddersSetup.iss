@@ -1,9 +1,9 @@
 [Setup]
 AppName=Snakes And Ladders
-AppVersion=1.0
+AppVersion=1.0.1
 DefaultDirName={autopf}\Radish\SnakesAndLadders
 DefaultGroupName=Radish
-SetupIconFile=images\ladder.ico
+SetupIconFile=images\snake.ico
 UninstallDisplayIcon={app}\SnakesAndLadders.exe
 LicenseFile=LICENSE.txt
 OutputBaseFilename=SnakesAndLaddersSetup
@@ -14,7 +14,7 @@ AppPublisherURL=https://radish-vert.vercel.app
 AppId={{0bc48071-0f12-40fc-99f5-285926c3b93e}
 
 [Files]
-Source: "bin\Release\net10.0-windows\publish\win-x64\*"; DestDir: "{app}"; Flags: recursesubdirs
+Source: "bin\Release\net10.0-windows\publish\win-x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 
 [Icons]
 Name: "{group}\SnakesAndLadders"; Filename: "{app}\SnakesAndLadders.exe"

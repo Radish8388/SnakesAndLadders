@@ -1,4 +1,6 @@
-﻿// must install NuGet Package: System.Speech
+﻿// must install NuGet Packages: System.Speech, NAudio
+using NAudio.SoundFont;
+using NAudio.Wave;
 using System.Diagnostics;
 using System.DirectoryServices.ActiveDirectory;
 using System.Numerics;
@@ -15,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+//using static System.Net.Mime.MediaTypeNames;
 
 namespace SnakesAndLadders
 {
@@ -188,25 +191,25 @@ namespace SnakesAndLadders
                 {
                     case 1:
                         MeText.Foreground = Brushes.Green;
-                        string filename = "pack://application:,,,/images/greenToken.png";
+                        string filename = "pack://application:,,,/images/greenToken2.png";
                         MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 2:
                         MeText.Foreground = Brushes.Blue;
-                        filename = "pack://application:,,,/images/blueToken.png";
+                        filename = "pack://application:,,,/images/blueToken2.png";
                         MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 3:
                         MeText.Foreground = Brushes.Purple;
-                        filename = "pack://application:,,,/images/purpleToken.png";
+                        filename = "pack://application:,,,/images/purpleToken2.png";
                         MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 4:
                         MeText.Foreground = Brushes.Gray;
-                        filename = "pack://application:,,,/images/grayToken.png";
+                        filename = "pack://application:,,,/images/grayToken2.png";
                         MeToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _computerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
@@ -217,25 +220,25 @@ namespace SnakesAndLadders
                 {
                     case 1:
                         YouText.Foreground = Brushes.Green;
-                        string filename = "pack://application:,,,/images/greenToken.png";
+                        string filename = "pack://application:,,,/images/greenToken2.png";
                         YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 2:
                         YouText.Foreground = Brushes.Blue;
-                        filename = "pack://application:,,,/images/blueToken.png";
+                        filename = "pack://application:,,,/images/blueToken2.png";
                         YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 3:
                         YouText.Foreground = Brushes.Purple;
-                        filename = "pack://application:,,,/images/purpleToken.png";
+                        filename = "pack://application:,,,/images/purpleToken2.png";
                         YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
                     case 4:
                         YouText.Foreground = Brushes.Gray;
-                        filename = "pack://application:,,,/images/grayToken.png";
+                        filename = "pack://application:,,,/images/grayToken2.png";
                         YouToken.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         _playerToken.Img.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
                         break;
@@ -442,12 +445,16 @@ namespace SnakesAndLadders
         {
             if (_playerToken.Square == 100)
             {
-                PrintAndSpeak("Congratulations, you won!");
+                //PrintAndSpeak("Congratulations, you won!");
+                Instructions.Text = "Game Over! Press New Game to play again.";
+                AnnounceWinner();
                 return true;
             }
             else if (_computerToken.Square == 100)
             {
-                PrintAndSpeak("Sorry, you lost.");
+                //PrintAndSpeak("Sorry, you lost.");
+                Instructions.Text = "Game Over! Press New Game to play again.";
+                AnnounceLoser();
                 return true;
             }
             return false;
@@ -481,6 +488,56 @@ namespace SnakesAndLadders
                 SoundImage.Source = new BitmapImage(new Uri("/images/soundOff.png", UriKind.Relative));
                 synth.SpeakAsyncCancelAll();
             }
+        }
+
+        private void AnnounceWinner()
+        {
+            string resourcePath = "pack://application:,,,/SnakesAndLadders;component/sounds/applause.wav";
+            if (_isSoundOn)
+            {
+                Task.Run(() =>
+                {
+                    var uri = new Uri(resourcePath, UriKind.Absolute);
+                    var resourceStream = Application.GetResourceStream(uri);
+                    using (var reader = new WaveFileReader(resourceStream.Stream))
+                    using (var output = new WaveOutEvent())
+                    {
+                        output.Init(reader);
+                        output.Play();
+                        while (output.PlaybackState == PlaybackState.Playing)
+                            System.Threading.Thread.Sleep(100);
+                    }
+                });
+            }
+
+            WinnerWindow dialog = new WinnerWindow();
+            dialog.Owner = this;
+            bool? result = dialog.ShowDialog();
+        }
+
+        private void AnnounceLoser()
+        {
+            string resourcePath = "pack://application:,,,/SnakesAndLadders;component/sounds/gameover.wav";
+            if (_isSoundOn)
+            {
+                Task.Run(() =>
+                {
+                    var uri = new Uri(resourcePath, UriKind.Absolute);
+                    var resourceStream = Application.GetResourceStream(uri);
+                    using (var reader = new WaveFileReader(resourceStream.Stream))
+                    using (var output = new WaveOutEvent())
+                    {
+                        output.Init(reader);
+                        output.Play();
+                        while (output.PlaybackState == PlaybackState.Playing)
+                            System.Threading.Thread.Sleep(100);
+                    }
+                });
+            }
+
+            LoserWindow dialog = new LoserWindow();
+            dialog.Owner = this;
+            bool? result = dialog.ShowDialog();
         }
     }
 }
