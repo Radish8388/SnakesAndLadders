@@ -1,23 +1,12 @@
 ﻿// must install NuGet Packages: System.Speech, NAudio
-using NAudio.SoundFont;
 using NAudio.Wave;
 using System.Diagnostics;
-using System.DirectoryServices.ActiveDirectory;
-using System.Numerics;
-using System.Reflection.Emit;
 using System.Speech.Synthesis;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-//using static System.Net.Mime.MediaTypeNames;
 
 namespace SnakesAndLadders
 {
@@ -44,8 +33,8 @@ namespace SnakesAndLadders
         bool _isPlayersTurn = false;
         Image? _imageToMove;
         int _roll = 0;
-        double _playerOffset = -0.2;
-        double _computerOffset = 0.2;
+        double _playerOffset = -0.3;
+        double _computerOffset = 0.3;
         double _destX, _destY;
         double _stepX, _stepY;
         bool _isPausing = false;
@@ -75,6 +64,15 @@ namespace SnakesAndLadders
         {
             // load the properties from disk
             Properties.Settings.Default.Reload();
+
+            // check for upgrade
+            if (Properties.Settings.Default.UpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
+
             bool soundOn = Properties.Settings.Default.SoundOn;
             if (soundOn == false) SoundButton_Click(this, new RoutedEventArgs());
             this.Left = Properties.Settings.Default.WindowLeft;
@@ -98,6 +96,9 @@ namespace SnakesAndLadders
                 this.Left = screenWidth - this.Width;
             if (this.Top + this.Height > screenHeight)
                 this.Top = screenHeight - this.Height;
+
+            if (Properties.Settings.Default.WindowState == "Maximized")
+                this.WindowState = WindowState.Maximized;
 
             string filename = "pack://application:,,,/images/board.png";
             _board.Source = new BitmapImage(new Uri(filename, UriKind.Absolute));
@@ -290,10 +291,10 @@ namespace SnakesAndLadders
             _squareSize = (69.6 / 726.0) * boardSize;
 
             // set token sizes
-            _playerToken.Size = _squareSize / 2.0;
+            _playerToken.Size = _squareSize * 0.75;
             _playerToken.Img.Width = _playerToken.Size;
             _playerToken.Img.Height = _playerToken.Size;
-            _computerToken.Size = _squareSize / 2.0;
+            _computerToken.Size = _squareSize * 0.75;
             _computerToken.Img.Width = _computerToken.Size;
             _computerToken.Img.Height = _computerToken.Size;
 
@@ -501,10 +502,14 @@ namespace SnakesAndLadders
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Properties.Settings.Default.WindowLeft = this.Left;
-            Properties.Settings.Default.WindowTop = this.Top;
-            Properties.Settings.Default.WindowWidth = this.Width;
-            Properties.Settings.Default.WindowHeight = this.Height;
+            Properties.Settings.Default.WindowState = this.WindowState.ToString();
+            if (this.WindowState == WindowState.Normal)
+            {
+                Properties.Settings.Default.WindowLeft = this.Left;
+                Properties.Settings.Default.WindowTop = this.Top;
+                Properties.Settings.Default.WindowWidth = this.Width;
+                Properties.Settings.Default.WindowHeight = this.Height;
+            }
             Properties.Settings.Default.SoundOn = _isSoundOn;
             Properties.Settings.Default.Save();
         }

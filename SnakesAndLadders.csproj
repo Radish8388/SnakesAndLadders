@@ -9,6 +9,8 @@
     <ApplicationIcon>images\snake.ico</ApplicationIcon>
     <Version>1.0.2</Version>
     <Company>Radish</Company>
+    <Product>Snakes And Ladders</Product>
+    <Copyright>© 2026 Radish</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
