@@ -10,7 +10,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner">
-    <Grid Background="#CC2200">
+    <Grid Background="#90CAf9">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="😢" FontSize="48" HorizontalAlignment="Center"/>
             <TextBlock Text="Game Over!" FontSize="24" HorizontalAlignment="Center" Foreground="White"/>

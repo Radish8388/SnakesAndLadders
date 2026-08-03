@@ -8,20 +8,20 @@
         Title="Choose:"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        Height="100" Width="250">
+        Height="150" Width="350">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Background="White" Click="GreenButton_Click">
-                <Image Source="/images/greenToken3.png" Width="50" Height="50"/>
+                <Image Source="/images/greenToken3.png" Width="80" Height="80"/>
             </Button>
             <Button Background="White" Click="BlueButton_Click">
-                <Image Source="/images/blueToken3.png" Width="50" Height="50"/>
+                <Image Source="/images/blueToken3.png" Width="80" Height="80"/>
             </Button>
             <Button Background="White" Click="PurpleButton_Click">
-                <Image Source="/images/purpleToken3.png" Width="50" Height="50"/>
+                <Image Source="/images/purpleToken3.png" Width="80" Height="80"/>
             </Button>
             <Button Background="White" Click="GrayButton_Click">
-                <Image Source="/images/grayToken3.png" Width="50" Height="50"/>
+                <Image Source="/images/grayToken3.png" Width="80" Height="80"/>
             </Button>
         </StackPanel>
     </Grid>
