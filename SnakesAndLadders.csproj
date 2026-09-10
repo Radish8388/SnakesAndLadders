@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>images\snake.ico</ApplicationIcon>
-    <Version>1.0.2</Version>
+    <ApplicationIcon>images\snake2.ico</ApplicationIcon>
+    <Version>1.1.0</Version>
     <Company>Radish</Company>
     <Product>Snakes And Ladders</Product>
     <Copyright>© 2026 Radish</Copyright>
@@ -17,18 +17,24 @@
     <None Remove="images\blueToken3.png" />
     <None Remove="images\board.png" />
     <None Remove="images\dice.png" />
+    <None Remove="images\five.png" />
+    <None Remove="images\four.png" />
     <None Remove="images\grayToken3.png" />
     <None Remove="images\greenToken3.png" />
+    <None Remove="images\one.png" />
     <None Remove="images\purpleToken3.png" />
     <None Remove="images\redToken3.png" />
+    <None Remove="images\six.png" />
     <None Remove="images\soundOff.png" />
     <None Remove="images\soundOn.png" />
+    <None Remove="images\three.png" />
+    <None Remove="images\two.png" />
     <None Remove="sounds\applause.wav" />
     <None Remove="sounds\gameover.wav" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="images\snake.ico" />
+    <Content Include="images\snake2.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,10 +52,19 @@
     <Resource Include="images\dice.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="images\five.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\four.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\grayToken3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\greenToken3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\one.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\purpleToken3.png">
@@ -58,10 +73,19 @@
     <Resource Include="images\redToken3.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="images\six.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\soundOff.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\soundOn.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\three.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\two.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="sounds\applause.wav">

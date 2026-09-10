@@ -25,7 +25,7 @@
             <Image x:Name="YouToken" Source="/images/redToken3.png" Stretch="UniformToFill"/>
             <Button Content="New Game" FontSize="12" Width="80" Margin="40,0,40,0" Click="NewGameButton_Click"/>
             <Button x:Name="DiceButton" Click="Dice_Click">
-                <Image Source="/images/dice.png"/>
+                <Image x:Name="DiceImage" Source="/images/one.png"/>
             </Button>
             <Button x:Name="SoundButton" BorderThickness="0" Background="White" Click="SoundButton_Click" Margin="40,0,0,0">
                 <Image x:Name="SoundImage" Source="/images/soundOn.png" Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>

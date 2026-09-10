@@ -117,13 +117,37 @@ namespace SnakesAndLadders
             NewGame();
         }
 
-        private void Dice_Click(object sender, RoutedEventArgs e)
+        private async void Dice_Click(object sender, RoutedEventArgs e)
         {
+            /*
+            string[] numbers = { "", "one", "two", "three", "four", "five", "six" };
             _roll = _random.Next(1, 7);
             //_roll = 4;
-            PrintAndSpeak($"You rolled a {_roll}.");
+            DiceImage.Source = new BitmapImage(new Uri($"/images/{numbers[_roll]}.png", UriKind.Relative));
+            PrintAndSpeak($"You rolled a {numbers[_roll]}.");
+            */
+            await RollDice("You");
             DiceButton.IsEnabled = false;
             ContinuePlayerTurn();
+        }
+
+        private async Task RollDice(string who)
+        {
+            string[] numbers = { "", "one", "two", "three", "four", "five", "six" };
+            int roll = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                roll = _random.Next(1, 7);
+                DiceImage.Source = new BitmapImage(new Uri($"/images/{numbers[roll]}.png", UriKind.Relative));
+                await Pause(100);
+            }
+            PrintAndSpeak($"{who} rolled a {numbers[roll]}.");
+            _roll = roll;
+        }
+
+        private async Task Pause(int durationMs)
+        {
+            await Task.Delay(durationMs);
         }
 
         private void Timer_Tick(object? sender, EventArgs e)
@@ -274,8 +298,8 @@ namespace SnakesAndLadders
             if (_board.Width < tw)
             {
                 _leftMargin = (tw - _board.Width) / 2.0;
-                Canvas.SetLeft(_board, _leftMargin);
             }
+            Canvas.SetLeft(_board, _leftMargin);
             _leftMargin += (15 / 726.0) * boardSize;
 
             // set top margin
@@ -283,8 +307,8 @@ namespace SnakesAndLadders
             if (_board.Height < th)
             {
                 _topMargin = (th - _board.Height) / 2.0;
-                Canvas.SetTop(_board, _topMargin);
             }
+            Canvas.SetTop(_board, _topMargin);
             _topMargin += (15 / 726.0) * boardSize;
 
             // set square size
@@ -348,12 +372,13 @@ namespace SnakesAndLadders
             StartNextMove();
         }
 
-        private void StartComputerTurn()
+        private async void StartComputerTurn()
         {
             if (CheckEndOfGame()) return;
             _isPlayersTurn = false;
-            _roll = _random.Next(1, 7);
-            PrintAndSpeak($"I rolled a {_roll}.");
+            //_roll = _random.Next(1, 7);
+            //PrintAndSpeak($"I rolled a {_roll}.");
+            await RollDice("I");
             _isSliding = false;
 
             _startSquare = _computerToken.Square;

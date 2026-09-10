@@ -1,9 +1,9 @@
 [Setup]
 AppName=Snakes And Ladders
-AppVersion=1.0.2
-DefaultDirName={autopf}\Radish\SnakesAndLadders
+AppVersion=1.1.0
+DefaultDirName={autopf}\Radish\Snakes And Ladders
 DefaultGroupName=Radish
-SetupIconFile=images\snake.ico
+SetupIconFile=images\snake2.ico
 UninstallDisplayIcon={app}\SnakesAndLadders.exe
 LicenseFile=LICENSE.txt
 OutputBaseFilename=SnakesAndLaddersSetup
@@ -17,8 +17,8 @@ AppId={{0bc48071-0f12-40fc-99f5-285926c3b93e}
 Source: "bin\Release\net10.0-windows\publish\win-x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 
 [Icons]
-Name: "{group}\SnakesAndLadders"; Filename: "{app}\SnakesAndLadders.exe"
-Name: "{commondesktop}\SnakesAndLadders"; Filename: "{app}\SnakesAndLadders.exe"; Tasks: desktopicon
+Name: "{group}\Snakes And Ladders"; Filename: "{app}\SnakesAndLadders.exe"
+Name: "{commondesktop}\Snakes And Ladders"; Filename: "{app}\SnakesAndLadders.exe"; Tasks: desktopicon
 
 [Tasks]
 Name: desktopicon; Description: "Create a &desktop shortcut"; GroupDescription: "Additional icons:"
