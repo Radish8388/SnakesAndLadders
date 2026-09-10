@@ -39,6 +39,7 @@ namespace SnakesAndLadders
         double _stepX, _stepY;
         bool _isPausing = false;
         bool _isSliding = false;
+        bool _isMoving = false;
         bool _isSoundOn = true;
 
         public MainWindow()
@@ -167,6 +168,7 @@ namespace SnakesAndLadders
                 if ((Math.Abs(left - _destX) <= Math.Abs(_stepX)) && (Math.Abs(top - _destY) <= Math.Abs(_stepY)))
                 // if very close to destination
                 {
+                    _isMoving = false;
                     Timer.Stop();
                     EndMove();
                 }
@@ -322,6 +324,15 @@ namespace SnakesAndLadders
             _computerToken.Img.Width = _computerToken.Size;
             _computerToken.Img.Height = _computerToken.Size;
 
+            // TODO the following seems to work
+            // needs more testing though
+            if (_isMoving)
+            {
+                _isMoving = false;
+                Timer.Stop();
+                EndMove();
+            }
+
             // set token positions
             MoveToPosition(_playerToken, _playerToken.Square, _playerOffset);
             MoveToPosition(_computerToken, _computerToken.Square, _computerOffset);
@@ -416,6 +427,7 @@ namespace SnakesAndLadders
             _stepX = dx * 0.1 * _squareSize / distance;
             _stepY = dy * 0.1 * _squareSize / distance;
 
+            _isMoving = true;
             Timer.Start();
         }
 
