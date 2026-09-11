@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>images\snake2.ico</ApplicationIcon>
+    <ApplicationIcon>images\SnakesAndLadders.ico</ApplicationIcon>
     <Version>1.1.0</Version>
     <Company>Radish</Company>
     <Product>Snakes And Ladders</Product>
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="images\snake2.ico" />
+    <Content Include="images\SnakesAndLadders.ico" />
   </ItemGroup>
 
   <ItemGroup>
